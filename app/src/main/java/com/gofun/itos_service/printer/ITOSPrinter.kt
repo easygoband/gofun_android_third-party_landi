@@ -2,10 +2,7 @@ package com.gofun.itos_service.printer
 
 import android.content.Context
 import com.itos.sdk.cm5.deviceLibrary.IDevice
-import com.itos.sdk.cm5.deviceLibrary.Printer.DotMatrixFontEnum
-import com.itos.sdk.cm5.deviceLibrary.Printer.FontEntity
-import com.itos.sdk.cm5.deviceLibrary.Printer.LineOptionEntity
-import com.itos.sdk.cm5.deviceLibrary.Printer.Printer
+import com.itos.sdk.cm5.deviceLibrary.Printer.*
 
 class ITOSPrinter(val context: Context) {
     private lateinit var itosPrinter: Printer
@@ -24,6 +21,11 @@ class ITOSPrinter(val context: Context) {
                 is PrintableQRItem -> appendQRToPrint(it)
             }
         }
+        itosPrinter.appendStr(
+            " ",
+            FontEntity(DotMatrixFontEnum.Serif_20X32, DotMatrixFontEnum.Serif_20X32),
+            Align.CENTER
+        )
         return itosPrinter.startPrint(true) {}
     }
 

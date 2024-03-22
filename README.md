@@ -1,7 +1,7 @@
 # README
 
 ## Gofun ITOS Service APP
-- `Gofun ITOS service` es una mini app desarrollada para los dispositivos Android ITOS (CM35) que permite imprimir tickets en segundo plano.
+- `Gofun ITOS service` es una mini app desarrollada para los dispositivos Android ITOS (CM35, CM5) que permite imprimir tickets en segundo plano.
 - minSDK 23, targetSDK 33
 
 ## Guía de uso
