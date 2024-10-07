@@ -5,21 +5,21 @@
 - minSDK 24, targetSDK 33
 
 ## Guía de uso
-- GetDeviceInfoBroadcastReceiver:
-  - **BroadcastReceiver** (No requiere la app en ejecución): 
+- Llamar desde una app externa a través de intent:
 ``
-    val intent = Intent("com.gofun.landi_service.ACTION_GET_DEVICE_INFO_RECEIVER")
-    intent.setPackage("com.gofun.landi_service")
-    intent.putExtra("DATA_TO_PRINT", printableItems)
-    sendBroadcast(intent)
+  val intent = Intent("com.gofun.landi_service.GET_DEVICE_TAG")
+  intent.putExtra("DEVICE_TAG", "IMEI")
+  startActivityForResult(intent, REQUEST_CODE)
 ``
-- GetDeviceInfoService
-  - **Service** (Requiere la app en ejecución): 
+- Recoger el resultado en la actividad:
 ``
-    val intent = Intent("com.gofun.landi_service.ACTION_GET_DEVICE_INFO_SERVICE")
-    intent.setPackage("com.gofun.landi_service")
-    intent.putExtra("DEVICE_TAG", deviceTag)
-    startService(intent)
+  override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+      super.onActivityResult(requestCode, resultCode, data)
+      if (requestCode == REQUEST_CODE && resultCode == Activity.RESULT_OK) {
+          val result = data?.getStringExtra("IMEI")
+      }
+      if (resultCode == RESULT_CANCELED){
+          Toast.makeText(this, "GOFUN-LANDI-SERVICE ERROR", Toast.LENGTH_SHORT).show()
+      }
+  }
 ``
-
-    
