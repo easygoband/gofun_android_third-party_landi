@@ -1,4 +1,4 @@
-package com.gofun.itos_service
+package com.gofun.landi_service
 
 import org.junit.Test
 

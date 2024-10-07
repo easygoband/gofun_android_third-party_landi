@@ -1,25 +1,25 @@
 # README
 
-## Gofun ITOS Service APP
-- `Gofun ITOS service` es una mini app desarrollada para los dispositivos Android ITOS (CM35, CM5) que permite imprimir tickets en segundo plano.
-- minSDK 23, targetSDK 33
+## Gofun LANDI Service APP
+- `Gofun LANDI service` es una mini app desarrollada para los dispositivos Android LANDI que permite ejecutar acciones en segundo plano.
+- minSDK 24, targetSDK 33
 
 ## Guía de uso
-- Las formas de imprimir en segundo plano son:
+- GetDeviceInfoBroadcastReceiver:
   - **BroadcastReceiver** (No requiere la app en ejecución): 
 ``
-    val intent = Intent("com.gofun.itos_service.ACTION_PRINT_DATA_RECEIVER")
-    intent.setPackage("com.gofun.itos_service")
+    val intent = Intent("com.gofun.landi_service.ACTION_GET_DEVICE_INFO_RECEIVER")
+    intent.setPackage("com.gofun.landi_service")
     intent.putExtra("DATA_TO_PRINT", printableItems)
     sendBroadcast(intent)
 ``
+- GetDeviceInfoService
   - **Service** (Requiere la app en ejecución): 
 ``
-    val intent = Intent("com.gofun.itos_service.ACTION_PRINT_DATA_SERVICE")
-    intent.setPackage("com.gofun.itos_service")
-    intent.putExtra("DATA_TO_PRINT", printableItems)
+    val intent = Intent("com.gofun.landi_service.ACTION_GET_DEVICE_INFO_SERVICE")
+    intent.setPackage("com.gofun.landi_service")
+    intent.putExtra("DEVICE_TAG", deviceTag)
     startService(intent)
 ``
-- Los items que se pueden imprimir son **Texto**, **QR** o **Imagen**. En el MainActivity de la app hay un ejemplo de PrintableItems
 
     
