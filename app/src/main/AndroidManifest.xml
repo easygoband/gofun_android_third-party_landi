@@ -35,6 +35,14 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".PrinterActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="com.gofun.landi_service.TICKET_PRINT" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>
