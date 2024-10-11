@@ -1,10 +1,10 @@
 package com.gofun.landi_service
 
-import android.app.Activity
+import android.content.BroadcastReceiver
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
 import com.fasterxml.jackson.databind.DeserializationFeature
 import com.fasterxml.jackson.databind.JsonNode
 import com.fasterxml.jackson.databind.ObjectMapper
@@ -14,11 +14,9 @@ import com.gofun.landi_service.printer.printableItems.PrintableItem
 import com.gofun.landi_service.printer.printableItems.PrintableQRItem
 import com.gofun.landi_service.printer.printableItems.PrintableTextItem
 
-class PrinterActivity : AppCompatActivity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        val resultIntent = Intent()
-        Toast.makeText(this, "GOFUN-LANDI service", Toast.LENGTH_SHORT).show()
+class PrinterBroadcastReceiver : BroadcastReceiver() {
+    override fun onReceive(context: Context, intent: Intent) {
+        Toast.makeText(context, "GOFUN-LANDI service", Toast.LENGTH_SHORT).show()
         try {
             val objectMapper = ObjectMapper()
             objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false)
@@ -42,15 +40,11 @@ class PrinterActivity : AppCompatActivity() {
                     }
                 }
             }
-            Printer(this).startPrinter(printableItemsList)
-            resultIntent.putExtra("RESULT", "OK")
-            setResult(Activity.RESULT_OK, resultIntent)
+            Printer(context).startPrinter(printableItemsList)
         } catch (e: Throwable){
             e.printStackTrace()
-            resultIntent.putExtra("ERROR", e.message)
-            setResult(Activity.RESULT_CANCELED, resultIntent)
         } finally {
-            finish()
+
         }
     }
 }

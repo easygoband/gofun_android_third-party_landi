@@ -35,14 +35,13 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".PrinterActivity"
+        <receiver
+            android:name=".PrinterBroadcastReceiver"
             android:exported="true">
             <intent-filter>
-                <action android:name="com.gofun.landi_service.TICKET_PRINT" />
-                <category android:name="android.intent.category.DEFAULT" />
+                <action android:name="com.gofun.landi_service.ACTION_PRINT_DATA_RECEIVER" />
             </intent-filter>
-        </activity>
+        </receiver>
     </application>
 
 </manifest>
